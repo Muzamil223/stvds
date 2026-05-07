@@ -1,8 +1,7 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
-const BASE = "http://localhost:5000/api";
-
+const BASE = import.meta.env.VITE_API_URL;
 export function useApi() {
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState(null);
