@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import { Radio, CameraOff, Info, HardHat, Users, Smartphone, Eye } from "lucide-react";
 
-const STREAM_URL = "http://localhost:5000/api/live/stream";
+const BASE = import.meta.env.VITE_API_URL;
 
+const STREAM_URL = `${BASE}/live/stream`;
 const LEGEND = [
   { color: "bg-green-500", label: "Person (normal)" },
   { color: "bg-red-500",   label: "Violation detected" },

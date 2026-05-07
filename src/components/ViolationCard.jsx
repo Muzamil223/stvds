@@ -1,15 +1,38 @@
 import React, { useState } from "react";
-import { Clock, AlertTriangle, Smartphone, Users, HardHat, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import {
+  Clock,
+  AlertTriangle,
+  Smartphone,
+  Users,
+  HardHat,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+} from "lucide-react";
 
 const VIOLATION_META = {
-  "No Helmet":          { icon: HardHat,      color: "text-red-600",   bg: "bg-red-50",   border: "border-red-200" },
-  "Triple Riding":      { icon: Users,        color: "text-red-600",   bg: "bg-red-50",   border: "border-red-200" },
-  "Mobile Phone Usage": { icon: Smartphone,   color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" },
+  "No Helmet": {
+    icon: HardHat,
+    color: "text-red-600",
+    bg: "bg-red-50",
+    border: "border-red-200",
+  },
+  "Triple Riding": {
+    icon: Users,
+    color: "text-red-600",
+    bg: "bg-red-50",
+    border: "border-red-200",
+  },
+  "Mobile Phone Usage": {
+    icon: Smartphone,
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    border: "border-amber-200",
+  },
 };
 
 function SeverityBadge({ severity }) {
-  if (severity === "High")
-    return <span className="badge-high">High</span>;
+  if (severity === "High") return <span className="badge-high">High</span>;
   if (severity === "Medium")
     return <span className="badge-medium">Medium</span>;
   return <span className="badge-low">Low</span>;
@@ -17,9 +40,8 @@ function SeverityBadge({ severity }) {
 
 export default function ViolationCard({ record, jobId, index }) {
   const [expanded, setExpanded] = useState(false);
-
-  const imageUrl = `http://localhost:5000/api/results/${jobId}/images/${record.evidence_image}`;
-
+  const BASE = import.meta.env.VITE_API_URL;
+  const imageUrl = `${BASE}/results/${jobId}/images/${record.evidence_image}`;
   return (
     <div className={`card overflow-hidden transition-shadow hover:shadow-md`}>
       {/* Header row */}
@@ -38,14 +60,29 @@ export default function ViolationCard({ record, jobId, index }) {
       {/* Violations list */}
       <div className="px-4 py-3 space-y-2">
         {record.violations.map((v, i) => {
-          const meta = VIOLATION_META[v.type] || { icon: AlertTriangle, color: "text-gray-600", bg: "bg-gray-50", border: "border-gray-200" };
+          const meta = VIOLATION_META[v.type] || {
+            icon: AlertTriangle,
+            color: "text-gray-600",
+            bg: "bg-gray-50",
+            border: "border-gray-200",
+          };
           const Icon = meta.icon;
           return (
-            <div key={i} className={`flex items-start gap-3 p-2.5 rounded border ${meta.bg} ${meta.border}`}>
-              <Icon size={16} className={`mt-0.5 flex-shrink-0 ${meta.color}`} />
+            <div
+              key={i}
+              className={`flex items-start gap-3 p-2.5 rounded border ${meta.bg} ${meta.border}`}
+            >
+              <Icon
+                size={16}
+                className={`mt-0.5 flex-shrink-0 ${meta.color}`}
+              />
               <div>
-                <div className={`text-sm font-semibold ${meta.color}`}>{v.type}</div>
-                {v.detail && <div className="text-xs text-gray-500 mt-0.5">{v.detail}</div>}
+                <div className={`text-sm font-semibold ${meta.color}`}>
+                  {v.type}
+                </div>
+                {v.detail && (
+                  <div className="text-xs text-gray-500 mt-0.5">{v.detail}</div>
+                )}
               </div>
               <SeverityBadge severity={v.severity} />
             </div>
