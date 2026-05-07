@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-gray-800 bg-gray-50 antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-gov-blue text-white text-sm font-semibold rounded-lg
+           hover:bg-gov-mid transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+           shadow-md hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-gov-blue text-gov-blue text-sm font-semibold
+           rounded-lg hover:bg-gov-light transition-all duration-200 backdrop-blur-sm;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-gray-200 text-gray-900 text-sm font-semibold
+           rounded-lg hover:bg-gray-300 transition-all duration-200;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white border border-gray-200 rounded-lg shadow-sm;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-lg hover:border-gov-border transition-all duration-300 cursor-pointer;
+  }
+
+  /* Badges */
+  .badge-high {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-200;
+  }
+
+  .badge-medium {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200;
+  }
+
+  .badge-low {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200;
+  }
+
+  /* Titles */
+  .section-title {
+    @apply text-xs font-bold uppercase tracking-widest text-gov-blue mb-3 opacity-80;
+  }
+
+  .section-heading {
+    @apply text-3xl sm:text-4xl font-bold text-gray-900;
+  }
+
+  .section-subtitle {
+    @apply text-gray-600 text-lg mt-3 max-w-2xl leading-relaxed;
+  }
+
+  /* Headers */
+  .gov-header-bar {
+    @apply bg-gov-navy text-white text-xs py-2 px-4 flex items-center justify-between border-b border-white/10;
+  }
+
+  /* Grid utilities */
+  .grid-flow {
+    @apply grid auto-flow-row gap-6;
+  }
+
+  /* Text utilities */
+  .text-accent {
+    @apply text-gov-blue font-semibold;
+  }
+
+  .text-muted {
+    @apply text-gray-500 text-sm;
+  }
+
+  /* Borders */
+  .border-accent {
+    @apply border-t-2 border-gov-blue;
+  }
+
+  /* Backgrounds */
+  .bg-gradient-gov {
+    @apply bg-gradient-to-br from-gov-navy to-gov-blue;
+  }
+
+  .bg-subtle {
+    @apply bg-gradient-to-br from-gray-50 to-gray-100;
+  }
+
+  /* Shadows */
+  .shadow-gov {
+    @apply shadow-lg shadow-gov-navy/20;
+  }
+
+  /* Icons */
+  .icon-gov {
+    @apply text-gov-blue;
+  }
+
+  /* Focus states */
+  .focus-gov {
+    @apply focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2;
+  }
+
+  /* Animations */
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-down {
+    animation: slideInDown 0.3s ease-out;
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  /* Transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full hover:bg-gray-600;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+
+/* Upload drop zone drag state */
+.drop-active {
+  @apply border-2 border-gov-blue bg-gov-light/50 scale-[1.01] shadow-lg;
+}
+
+/* Smooth page transitions */
+html {
+  @apply scroll-smooth;
+}
+
+/* Responsive text sizes */
+@screen sm {
+  .text-responsive {
+    @apply text-lg;
+  }
+}
+
+@screen md {
+  .text-responsive {
+    @apply text-xl;
+  }
+}
+
+/* Form inputs */
+input,
+textarea,
+select {
+  @apply focus-gov border border-gray-300 rounded-lg px-4 py-2 transition-colors;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  @apply border-gov-border;
+}
+
+/* Links */
+a {
+  @apply transition-colors duration-150;
+}
+
+/* Utility: Center content */
+.center-content {
+  @apply flex items-center justify-center;
+}
+
+/* Utility: Container limits */
+.max-w-gov {
+  @apply max-w-6xl;
+}
+
+@keyframes scan {
+  0%, 100% { transform: translateY(-100px); opacity: 0; }
+  50% { transform: translateY(100px); opacity: 1; }
+}
+
+.animate-spin-slow {
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
